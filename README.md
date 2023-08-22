@@ -1,0 +1,2 @@
+# MyKotlinProject
+Hanya untuk belajar.
