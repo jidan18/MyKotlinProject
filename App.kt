@@ -10,64 +10,60 @@
  *                                                                                                  *
  ***************************************************************************************************/
 
-package com.dicoding.exam.latihan1
+package com.dicoding.exam.latihan2
 
 /**
  *  TODO 1
- *  Sesuaikan fungsi di bawah ini dengan kode untuk mengecek apakah parameter number
- *  merupakan angka genap
+ *  Sesuaikan fungsi di bawah ini agar dapat mengembalikkan nilai dengan rumus
+ *  perhitungan berikut:
+ *
+ *      valueA + (valueB - valueC)
+ *
+ *  Jika valueC bernilai null, silakan tetapkan nilai 50 sebagai nilai default-nya
  */
 
-//No 1 - Bagian 1
-fun isEvenNumber(number: Int) = number % 2 == 0 // Tugas pertama, kita mau cek apakah suatu angka itu genap atau tidak. Jadi, misalnya, kalau bisa dibagi dua, itu artinya angka genap.
+/**No 1 - Bagian 2
+ Menghitung hasil dari ekspresi matematika yang diberikan oleh rumus:
+ hasil = valueA + (valueB - (valueC ?: 50))
+
+ @param valueA Nilai pertama yang akan dijumlahkan.
+ @param valueB Nilai kedua yang akan dikurangkan dari valueA.
+ @param valueC Nilai opsional yang akan digunakan dalam pengurangan (jika ada). Jika null, digunakan nilai default 50.
+ @return Hasil dari ekspresi matematika yang dihitung berdasarkan parameter yang diberikan.
+ */
+fun calculate(valueA: Int, valueB: Int, valueC: Int?): Int {
+    return valueA + (valueB - (valueC ?: 50))
+}
 
 /**
  *  TODO 2
- *  Sesuaikan fungsi di bawah ini dengan kode untuk mengecek apakah parameter number
- *  lebih dari 5
- */
-
-//No 2 - Bagian 1
-fun moreThanFive(number: Int) = number > 5 // Tugas kedua, kita mau lihat apakah suatu angka itu lebih dari lima atau nggak. Nah, kalau lebih dari lima, kita bisa bilang angkanya gede ya.
-
-
-
-/**
- *  TODO 3
- *  Sesuaikan fungsi di bawah ini agar dapat menghasilkan nilai akhir dengan
- *  rumus:
+ *  Sesuaikan fungsi di bawah ini agar dapat mengembalikkan text seperti berikut:
  *
- *      param * ( param + 10 )
+ *      Result is ${result}
  */
-//No 3 - Bagian 1
-// Kita mau hitung nilai hasil dari sesuatu berdasarkan rumus ini:
-// "angka tersebut dikali dengan angka itu sendiri ditambah sepuluh"
-
-fun result(number: Int) = number * (number + 10)
+/**No 2 - Bagian 2
+Fungsi untuk menghitung hasil dari tiga nilai, dimana nilai ketiga dapat menjadi null
+Fungsi untuk menghasilkan teks berdasarkan hasil yang diberikan
+*/
+fun result(result: Int): String {
+    return "Result is $result"
+}
 
 fun main() {
-    // Nah, sekarang kita mau main-main dengan angka.
-    // Kita bikin daftar angka dari satu sampai seratus, seru kan?
+    // Inisialisasi nilai-nilai yang akan digunakan
+    val valueA = 101
+    val valueB = 52
+    val valueC = 99
 
-    val listNumber = 1.rangeTo(100)
+    val resultA = calculate(valueA, valueB, valueC)                 // Hitung hasil dengan menggunakan nilai C yang tidak null
+    val resultB = calculate(valueA, valueB, null)            // Hitung hasil dengan menggunakan nilai C yang null
 
-    // Oke, sekarang kita mau lihat-lihat satu-satu deh.
-
-    for (number in listNumber) {
-        // Pertama-tama, cek dahulu, apakah angkanya itu genap?
-        // Kalau iya, lewati saja, tidak perlu dihitung.
-
-        if (isEvenNumber(number)) continue
-
-        // Sekarang, kita mau cek, apakah angkanya lebih dari lima?
-        // Kalau iya, berarti kita udah cukup, keluar aja dari main loop.
-
-        if (moreThanFive(number)) break
-
-        // Nah, kalau kedua tugas di atas nggak terpenuhi, artinya kita punya angka yang menarik.
-        // Kita hitung nilai hasilnya berdasarkan rumus kita tadi, trus kita kasih tau hasilnya.
-
-        val result = result(number)
-        println("Hasil hitung dari angka di range ini adalah $result")
-    }
+    // Cetak hasil menggunakan fungsi result() dan cetak dalam format yang rapi
+    println("""
+        ${result(resultA)}
+        ${result(resultB)}
+    """.trimIndent())
 }
+
+
+
